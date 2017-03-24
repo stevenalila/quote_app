@@ -1,0 +1,8 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+	<h1>Dashboard</h1>
+	<p>Welcome to your dashboard. To proceed to <a href="{% url 'create' %}">create</a>, <a href="{% url 'edit' %}">Edit</a>, <a href="{% url 'overview' %}">View</a> or <a href="{% url 'delete' %}">Delete</a> Please click their respective links. Thank you.</p>
+{% endblock %}

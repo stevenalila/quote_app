@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block title %}Overview{% endblock %}
+
+{% block content %}
+	<h1>Welcome</h1>
+	
+
+	<table class="table">
+  {% for quote in quotes %}
+    <tr>
+    <td> {{quote.quote}}  </td>
+    <td>Posted by <a href="{% url 'user_quotes' quote.user.id %}">{{ quote.user }}</a></td>
+    
+     <td>{{quote.quoted_by}}</td>
+     <td><form action="{% url 'favorite' quote.id %}" method='POST'>
+	{% csrf_token %}
+	<input class="btn btn-primary" type="submit" value="Add Favorite">
+	</form></td>
+    </tr>
+  {% endfor %}
+ 	</table>
+ <br>
+ <h1>Favorite</h1>
+ 	<table class="table">
+
+ 	{% for quote in favorite_quotes %}
+ <tr>
+ <td>Posted by <a href="{% url 'user_quotes' quote.user.id %}">{{ quote.user }}</a></td>
+ <td>{{quote.quoted_by}}</td>
+ <td>{{quote.quote}}</td>
+ <td><form action="{% url 'remove_favorite' quote.id %}" method='POST'>
+	{% csrf_token %}
+	<input class="btn btn-primary" type="submit" value="Remove Favorite">
+	</form></td>
+ </tr>
+ {% endfor %}
+
+ </table>
+ <h1> Submit Quote </h1>
+ <form action="{% url 'create' %}" method='POST'>
+	{% csrf_token %}
+	{{ form.as_p }}
+	<input class="btn btn-primary" type="submit" value="Submit">
+	</form>
+
+{% endblock %}

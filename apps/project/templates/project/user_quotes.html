@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block title %}User Quotes{% endblock %}
+
+{% block content %}
+	<h1>Quotes by {{ user }}</h1>
+	<h2> Count {{ quotes|length }}</h2>
+	<table class="table">
+
+ 	{% for quote in quotes %}
+ <tr>
+ <td>{{quote.user}} </td>
+ <td>{{quote.quoted_by}}</td>
+ <td>{{quote.quote}}</td>
+  </tr>
+ {% endfor %}
+
+ </table>
+	
+{% endblock %}
